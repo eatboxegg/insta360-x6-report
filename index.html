@@ -1,0 +1,4420 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#070807" />
+    <meta
+      name="description"
+      content="从拍到所有到选出重要：Insta360 X6 场景化体验报告与创新功能"
+    />
+    <title>从「拍到所有」到「选出重要」｜Insta360 X6 场景化体验报告</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070807'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23dfff00' stroke-width='4'/%3E%3Cpath d='M18 32h28M32 18a24 24 0 0 1 0 28M32 18a24 24 0 0 0 0 28' fill='none' stroke='%23f7f7f2' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --bg: #070807;
+        --panel: #111311;
+        --panel2: #181b18;
+        --ink: #f4f5ed;
+        --muted: #999e95;
+        --line: #2b2f2a;
+        --acid: #dfff00;
+        --cyan: #77ecff;
+        --pad: clamp(20px, 4vw, 64px);
+        --r: 22px;
+        color-scheme: dark;
+        font-synthesis: none;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--acid);
+        color: #070807;
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 99;
+        opacity: 0.065;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+      }
+      .progress {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 2px;
+        background: var(--acid);
+        z-index: 100;
+      }
+      .nav {
+        position: fixed;
+        inset: 0 0 auto;
+        height: 70px;
+        padding: 0 var(--pad);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 60;
+        background: linear-gradient(#070807f0, #0708078a, transparent);
+        backdrop-filter: blur(10px);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 760;
+        letter-spacing: -0.02em;
+      }
+      .brand i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--acid);
+        box-shadow: 0 0 18px #dfff00;
+      }
+      .navlinks {
+        display: flex;
+        gap: 7px;
+      }
+      .navlinks a {
+        padding: 7px 11px;
+        border: 1px solid transparent;
+        border-radius: 99px;
+        color: var(--muted);
+        font:
+          12px/1.4 "SFMono-Regular",
+          Consolas,
+          monospace;
+      }
+      .navlinks a:hover,
+      .navlinks a.active {
+        color: var(--ink);
+        border-color: var(--line);
+        background: #171917;
+      }
+      .section {
+        padding: clamp(92px, 11vw, 160px) var(--pad);
+        border-bottom: 1px solid var(--line);
+        position: relative;
+      }
+      .wrap {
+        max-width: 1280px;
+        margin: auto;
+      }
+      .eyebrow {
+        font:
+          12px "SFMono-Regular",
+          Consolas,
+          monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--acid);
+        margin-bottom: 20px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        align-items: flex-end;
+        padding-top: 120px;
+        overflow: hidden;
+      }
+      .hero:before {
+        content: "";
+        position: absolute;
+        width: min(80vw, 1000px);
+        aspect-ratio: 1;
+        right: -25vw;
+        top: -35vw;
+        border-radius: 50%;
+        background:
+          repeating-radial-gradient(
+            circle,
+            #ffffff10 0 1px,
+            transparent 2px 52px
+          ),
+          radial-gradient(circle, #dfff001b, transparent 65%);
+      }
+      .hero-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.45fr);
+        gap: 7vw;
+        align-items: end;
+      }
+      .hero h1 {
+        margin: 0 0 30px;
+        font-size: clamp(58px, 9.7vw, 148px);
+        line-height: 0.85;
+        letter-spacing: -0.075em;
+      }
+      .hero h1 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px #f4f5ed77;
+      }
+      .hero-copy {
+        max-width: 650px;
+        margin: 0;
+        font-size: clamp(18px, 1.7vw, 25px);
+        line-height: 1.5;
+      }
+      .hero-aside {
+        padding-left: 28px;
+        border-left: 1px solid var(--line);
+      }
+      .meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 16px;
+      }
+      .meta small {
+        display: block;
+        color: #71766f;
+        font: 10px/1.5 monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .meta b {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .scroll {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 46px;
+        color: var(--muted);
+        font: 12px monospace;
+      }
+      .scroll:before {
+        content: "↓";
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--acid);
+      }
+      .part-band {
+        padding: 28px var(--pad);
+        background: var(--acid);
+        color: #070807;
+      }
+      .part-band .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .part-band b {
+        font-size: clamp(24px, 4vw, 54px);
+        letter-spacing: -0.05em;
+      }
+      .part-band span {
+        font: 12px monospace;
+        letter-spacing: 0.12em;
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.48fr 1.52fr;
+        gap: 7vw;
+        margin-bottom: 70px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(42px, 6vw, 80px);
+        line-height: 0.95;
+        letter-spacing: -0.055em;
+      }
+      .section-head p {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(18px, 2vw, 27px);
+        line-height: 1.48;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 18px;
+      }
+      .summary-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+        padding: clamp(28px, 4vw, 54px);
+      }
+      .summary-card h3 {
+        font-size: clamp(30px, 4vw, 58px);
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+        margin: 0 0 26px;
+      }
+      .summary-card strong {
+        color: var(--acid);
+        font-weight: inherit;
+      }
+      .summary-points {
+        display: grid;
+      }
+      .summary-point {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 14px;
+        padding: 18px 0;
+        border-top: 1px solid var(--line);
+      }
+      .summary-point span {
+        color: var(--cyan);
+        font: 12px monospace;
+      }
+      .summary-point b {
+        font-weight: 500;
+      }
+      .value-chain {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(145deg, #192018, #0e100e);
+      }
+      .value-chain .chain {
+        display: grid;
+        gap: 10px;
+        margin-top: 40px;
+      }
+      .chain div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .chain span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .chain b {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .chain i {
+        color: var(--acid);
+        font-style: normal;
+      }
+      .method-strip {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .method-step {
+        min-height: 160px;
+        padding: 22px 16px;
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .method-step:last-child {
+        border: 0;
+      }
+      .method-step span {
+        font: 11px monospace;
+        color: var(--acid);
+      }
+      .method-step b {
+        font-size: 15px;
+        line-height: 1.25;
+        font-weight: 500;
+      }
+      .scene-block {
+        padding: clamp(85px, 10vw, 140px) 0;
+        border-top: 1px solid var(--line);
+      }
+      .scene-top {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 18px;
+        min-height: 560px;
+      }
+      .scene-copy,
+      .scene-visual {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .scene-copy {
+        padding: clamp(28px, 4.5vw, 60px);
+        background: var(--panel);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .scene-index {
+        font: 12px monospace;
+        color: var(--acid);
+        letter-spacing: 0.12em;
+      }
+      .scene-copy h3 {
+        font-size: clamp(44px, 6vw, 82px);
+        line-height: 0.92;
+        letter-spacing: -0.065em;
+        margin: 20px 0 24px;
+      }
+      .scene-copy > div > p {
+        font-size: 18px;
+        max-width: 580px;
+        color: var(--muted);
+      }
+      .tagrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font: 11px monospace;
+        padding: 6px 10px;
+        border: 1px solid #ffffff1e;
+        border-radius: 99px;
+        color: #c7cbc3;
+      }
+      .scene-visual {
+        position: relative;
+        min-height: 520px;
+        background: #0d0f0d;
+      }
+      .visual-label {
+        position: absolute;
+        left: 24px;
+        top: 22px;
+        font: 11px monospace;
+        letter-spacing: 0.12em;
+        color: #b2b7ad;
+        z-index: 3;
+      }
+      .visual-caption {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 22px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        color: #b2b7ad;
+        font: 11px monospace;
+        z-index: 3;
+      }
+      .visual-caption b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .daily-viz {
+        background: radial-gradient(
+          circle at 50% 50%,
+          #263321 0 2%,
+          #141814 20%,
+          #0c0e0c 55%
+        );
+      }
+      .daily-viz:before,
+      .daily-viz:after {
+        content: "";
+        position: absolute;
+        inset: 50% auto auto 50%;
+        translate: -50% -50%;
+        border: 1px solid #ffffff1f;
+        border-radius: 50%;
+      }
+      .daily-viz:before {
+        width: 62%;
+        aspect-ratio: 1;
+        box-shadow:
+          0 0 0 45px #ffffff07,
+          0 0 0 90px #ffffff04;
+      }
+      .daily-viz:after {
+        width: 18%;
+        aspect-ratio: 1;
+        border-color: var(--acid);
+        box-shadow: 0 0 30px #dfff0033;
+      }
+      .viewfinder {
+        position: absolute;
+        inset: 19% 16%;
+        border: 1px solid #ffffff2c;
+      }
+      .viewfinder:before,
+      .viewfinder:after {
+        content: "";
+        position: absolute;
+        background: #ffffff24;
+      }
+      .viewfinder:before {
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+      }
+      .viewfinder:after {
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+      }
+      .crowd-viz {
+        background: linear-gradient(150deg, #151515, #090909);
+      }
+      .crowd {
+        position: absolute;
+        inset: 13% 10% 16%;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: clamp(8px, 1.3vw, 18px);
+        align-content: center;
+      }
+      .person {
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #2d302d;
+        position: relative;
+      }
+      .person:after {
+        content: "";
+        position: absolute;
+        width: 140%;
+        height: 90%;
+        left: -20%;
+        top: 75%;
+        border-radius: 50% 50% 15% 15%;
+        background: #202320;
+      }
+      .person:nth-child(6),
+      .person:nth-child(11),
+      .person:nth-child(20),
+      .person:nth-child(27) {
+        scale: 1.35;
+        background: #3b4039;
+        z-index: 2;
+      }
+      .person.target {
+        background: var(--acid);
+        box-shadow:
+          0 0 0 8px #dfff001f,
+          0 0 40px #dfff0038;
+      }
+      .person.target:after {
+        background: #879c00;
+      }
+      .target-ring {
+        position: absolute;
+        left: 61%;
+        top: 35%;
+        width: 26%;
+        aspect-ratio: 1;
+        border: 1px dashed var(--acid);
+        border-radius: 50%;
+        animation: spin 12s linear infinite;
+      }
+      .target-ring:after {
+        content: "TARGET";
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        translate: -50% 0;
+        color: var(--acid);
+        font: 10px monospace;
+      }
+      .volley-viz {
+        background: radial-gradient(circle at 50% 30%, #253021, #0c0e0c 60%);
+      }
+      .court {
+        position: absolute;
+        inset: 17% 10% 19%;
+        perspective: 900px;
+      }
+      .court-inner {
+        position: absolute;
+        inset: 8% 2%;
+        transform: rotateX(60deg);
+        border: 2px solid #f4f5ed99;
+        background:
+          linear-gradient(
+            90deg,
+            transparent 49.7%,
+            #f4f5ed99 50%,
+            transparent 50.3%
+          ),
+          linear-gradient(
+            0deg,
+            transparent 49.7%,
+            #f4f5ed66 50%,
+            transparent 50.3%
+          ),
+          #dfff000c;
+        box-shadow: 0 30px 60px #000;
+      }
+      .court-inner:before,
+      .court-inner:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #f4f5ed55;
+      }
+      .court-inner:before {
+        left: 33.3%;
+      }
+      .court-inner:after {
+        right: 33.3%;
+      }
+      .net {
+        position: absolute;
+        left: 50%;
+        top: 8%;
+        bottom: 8%;
+        width: 4px;
+        background: var(--cyan);
+        box-shadow: 0 0 16px #77ecff;
+        transform: rotateX(60deg);
+      }
+      .ball {
+        position: absolute;
+        left: 16%;
+        top: 61%;
+        width: 28px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--acid);
+        box-shadow: 0 0 22px #dfff0066;
+        animation: serve 3.2s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+      }
+      .trajectory {
+        position: absolute;
+        left: 18%;
+        top: 26%;
+        width: 64%;
+        height: 48%;
+        border-top: 1px dashed #dfff0088;
+        border-radius: 50%;
+      }
+      .scene-analysis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .analysis-card {
+        min-height: 210px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        background: #0f110f;
+      }
+      .analysis-card span {
+        font: 10px monospace;
+        color: var(--acid);
+        letter-spacing: 0.1em;
+      }
+      .analysis-card h4 {
+        margin: 28px 0 10px;
+        font-size: 19px;
+        line-height: 1.2;
+      }
+      .analysis-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .fill {
+        color: #d8dccf;
+        border-bottom: 1px dashed #596050;
+      }
+      .duel-section {
+        background:
+          radial-gradient(circle at 18% 15%, #dfff000d, transparent 32%),
+          radial-gradient(circle at 82% 15%, #ffffff08, transparent 30%),
+          #090a09;
+      }
+      .duel-title {
+        text-align: center;
+        max-width: 970px;
+        margin: 0 auto 64px;
+      }
+      .duel-title h2 {
+        font-size: clamp(50px, 8vw, 112px);
+        line-height: 0.85;
+        letter-spacing: -0.07em;
+        margin: 0;
+      }
+      .duel-title h2 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px #f4f5ed66;
+      }
+      .duel-title p {
+        max-width: 700px;
+        margin: 30px auto 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+      .video-duel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        position: relative;
+      }
+      .duel-video {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+        background: var(--panel);
+      }
+      .duel-screen {
+        height: clamp(300px, 36vw, 500px);
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .duel-screen video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        background: #080908;
+      }
+      .duel-video.x6 {
+        border-color: #dfff0055;
+      }
+      .duel-video.x6 .duel-screen {
+        background: radial-gradient(
+          circle at 50% 35%,
+          #2c3b24,
+          #10140f 55%,
+          #080908
+        );
+      }
+      .duel-video.phone .duel-screen {
+        background: linear-gradient(160deg, #272927, #0d0e0d);
+      }
+      .duel-screen:before {
+        content: "";
+        position: absolute;
+        inset: 12%;
+        border: 1px solid #ffffff20;
+        background:
+          linear-gradient(
+            90deg,
+            transparent 49.8%,
+            #ffffff16 50%,
+            transparent 50.2%
+          ),
+          linear-gradient(
+            0deg,
+            transparent 49.8%,
+            #ffffff16 50%,
+            transparent 50.2%
+          );
+      }
+      .duel-video.x6 .duel-screen:after {
+        content: "360°";
+        position: absolute;
+        font-size: clamp(88px, 15vw, 210px);
+        font-weight: 850;
+        letter-spacing: -0.08em;
+        color: #dfff000c;
+      }
+      .duel-video.phone .duel-screen:after {
+        content: "FIXED";
+        position: absolute;
+        font: 700 clamp(60px, 9vw, 130px)/1 monospace;
+        letter-spacing: -0.08em;
+        color: #ffffff08;
+        rotate: -8deg;
+      }
+      .duel-badge {
+        position: absolute;
+        left: 22px;
+        top: 20px;
+        z-index: 2;
+        padding: 7px 10px;
+        border-radius: 99px;
+        background: var(--acid);
+        color: #070807;
+        font: 11px monospace;
+        letter-spacing: 0.08em;
+        pointer-events: none;
+      }
+      .phone .duel-badge {
+        background: #f4f5ed;
+      }
+      .duel-meta {
+        padding: 22px 24px 24px;
+        border-top: 1px solid var(--line);
+      }
+      .duel-meta h3 {
+        font-size: 25px;
+        margin: 0 0 5px;
+        letter-spacing: -0.03em;
+      }
+      .duel-meta p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .duel-vs {
+        position: absolute;
+        left: 50%;
+        top: calc(clamp(300px, 36vw, 500px) / 2);
+        translate: -50% -50%;
+        z-index: 5;
+        width: 58px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--ink);
+        color: #070807;
+        border: 6px solid var(--bg);
+        font: 800 14px monospace;
+      }
+      .contrast-list {
+        margin-top: 38px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .contrast-row {
+        display: grid;
+        grid-template-columns: 1fr 72px 1fr;
+        align-items: stretch;
+        border-bottom: 1px solid var(--line);
+        background: #0e100e;
+      }
+      .contrast-row:last-child {
+        border-bottom: 0;
+      }
+      .contrast-side {
+        padding: 24px clamp(18px, 3vw, 38px);
+      }
+      .contrast-side.good {
+        background: linear-gradient(90deg, #dfff0009, transparent);
+      }
+      .contrast-side.bad {
+        text-align: right;
+        background: linear-gradient(270deg, #ffffff06, transparent);
+      }
+      .contrast-side small {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .contrast-side.good small {
+        color: var(--acid);
+      }
+      .contrast-side b {
+        display: block;
+        font-size: clamp(18px, 2vw, 28px);
+        line-height: 1.18;
+        letter-spacing: -0.025em;
+      }
+      .contrast-side p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .contrast-vs {
+        display: grid;
+        place-items: center;
+        border-left: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        color: #656b62;
+        font: 11px monospace;
+      }
+      .duel-claim {
+        text-align: center;
+        margin: 52px auto 0;
+        font-size: clamp(30px, 4.5vw, 64px);
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+        max-width: 1000px;
+      }
+      .duel-claim strong {
+        color: var(--acid);
+        font-weight: inherit;
+      }
+      .duel-title {
+        position: relative;
+      }
+      .shoot-context {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 26px;
+        padding: 9px 14px;
+        border: 1px solid #dfff0044;
+        border-radius: 99px;
+        background: #dfff0009;
+        color: #dfe7d7;
+        font: 11px monospace;
+        letter-spacing: 0.08em;
+      }
+      .shoot-context i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--acid);
+        box-shadow: 0 0 12px var(--acid);
+      }
+      .camera-sticker {
+        position: absolute;
+        right: -118px;
+        top: -46px;
+        width: clamp(155px, 16vw, 220px);
+        margin: 0;
+        padding: 8px 8px 12px;
+        background: #eeeee8;
+        color: #111;
+        box-shadow: 0 18px 45px #0009;
+        transform: rotate(4deg);
+        z-index: 4;
+      }
+      .camera-sticker:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        width: 74px;
+        height: 26px;
+        translate: -50% 0;
+        rotate: -4deg;
+        background: #dfff00b8;
+        box-shadow: 0 2px 8px #0004;
+      }
+      .camera-sticker img {
+        display: block;
+        width: 100%;
+        height: clamp(110px, 12vw, 158px);
+        object-fit: cover;
+        background: #c9cbc3;
+      }
+      .camera-sticker figcaption {
+        margin-top: 9px;
+        text-align: left;
+        font: 10px/1.35 monospace;
+        letter-spacing: 0.07em;
+      }
+      .camera-sticker figcaption b {
+        display: block;
+        font-size: 11px;
+      }
+      .table-scroll {
+        overflow-x: auto;
+      }
+      .comparison {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+      }
+      .comparison-row {
+        display: grid;
+        grid-template-columns: 1.15fr repeat(3, 1fr);
+        min-width: 760px;
+      }
+      .comparison-row > div {
+        padding: 18px 20px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .comparison-row > div:last-child {
+        border-right: 0;
+      }
+      .comparison-row:last-child > div {
+        border-bottom: 0;
+      }
+      .comparison-head {
+        background: #171a17;
+        color: var(--muted);
+        font: 11px monospace;
+        letter-spacing: 0.08em;
+      }
+      .comparison-row b {
+        font-weight: 500;
+      }
+      .score {
+        display: flex;
+        gap: 4px;
+      }
+      .score i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #30342f;
+      }
+      .score i.on {
+        background: var(--acid);
+        box-shadow: 0 0 10px #dfff0044;
+      }
+      .takeaway {
+        margin-top: 28px;
+        padding: clamp(36px, 6vw, 80px);
+        border-radius: var(--r);
+        border: 1px solid var(--line);
+        background: linear-gradient(135deg, #171a16, #0b0d0b);
+        font-size: clamp(30px, 4.5vw, 64px);
+        line-height: 1.12;
+        letter-spacing: -0.05em;
+      }
+      .takeaway strong {
+        color: var(--acid);
+        font-weight: inherit;
+      }
+      .part2 {
+        background: var(--acid);
+        color: #070807;
+      }
+      .feature-hero {
+        min-height: 88svh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 5vw;
+        align-items: end;
+      }
+      .feature-hero .eyebrow {
+        color: #070807;
+      }
+      .feature-hero h2 {
+        font-size: clamp(64px, 11vw, 164px);
+        line-height: 0.77;
+        letter-spacing: -0.085em;
+        margin: 0;
+      }
+      .feature-hero h2 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #070807;
+      }
+      .feature-lead {
+        font-size: clamp(20px, 2.2vw, 31px);
+        line-height: 1.35;
+        margin: 0 0 30px;
+      }
+      .scoreboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid #070807;
+        border-radius: 18px;
+        overflow: hidden;
+        margin-top: 36px;
+      }
+      .scoreboard div {
+        padding: 16px;
+        border-right: 1px solid #070807;
+      }
+      .scoreboard div:last-child {
+        border: 0;
+      }
+      .scoreboard small {
+        display: block;
+        font: 10px monospace;
+      }
+      .scoreboard b {
+        font-size: 24px;
+      }
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .problem-card {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+        min-height: 280px;
+      }
+      .problem-card span {
+        font: 12px monospace;
+        color: var(--acid);
+      }
+      .problem-card h3 {
+        font-size: 28px;
+        line-height: 1.1;
+        margin: 52px 0 14px;
+      }
+      .problem-card p {
+        color: var(--muted);
+        margin: 0;
+      }
+      .problem-card.featured {
+        background: var(--acid);
+        color: #070807;
+      }
+      .problem-card.featured span,
+      .problem-card.featured p {
+        color: #070807;
+      }
+      .feature-shell {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 16px;
+      }
+      .feature-main,
+      .feature-side {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: clamp(28px, 4.5vw, 58px);
+        background: var(--panel);
+      }
+      .feature-main h3 {
+        font-size: clamp(46px, 7vw, 96px);
+        line-height: 0.87;
+        letter-spacing: -0.07em;
+        margin: 12px 0 28px;
+      }
+      .feature-main p {
+        font-size: 20px;
+        max-width: 690px;
+      }
+      .feature-side {
+        background: #151915;
+      }
+      .principle {
+        font-size: clamp(28px, 3.5vw, 50px);
+        line-height: 1.06;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+      .principle strong {
+        color: var(--acid);
+        font-weight: inherit;
+      }
+      .feature-list {
+        margin-top: 70px;
+      }
+      .feature-item {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 14px;
+        padding: 18px 0;
+        border-top: 1px solid var(--line);
+      }
+      .feature-item span {
+        font: 11px monospace;
+        color: var(--cyan);
+      }
+      .feature-item b {
+        font-weight: 500;
+      }
+      .flowline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .flowcard {
+        min-height: 300px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .flowcard span {
+        font: 11px monospace;
+        color: var(--acid);
+      }
+      .flowcard h4 {
+        font-size: 24px;
+        line-height: 1.1;
+        margin: 0 0 10px;
+      }
+      .flowcard p {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0;
+      }
+      .flowcard svg {
+        width: 100%;
+        height: 90px;
+        margin-bottom: 28px;
+        color: var(--acid);
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .metric {
+        padding: 28px;
+        background: #101210;
+        border-right: 1px solid var(--line);
+      }
+      .metric:last-child {
+        border: 0;
+      }
+      .metric b {
+        display: block;
+        font-size: clamp(27px, 3.5vw, 48px);
+        letter-spacing: -0.04em;
+        color: var(--acid);
+      }
+      .metric span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .video-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 16px;
+      }
+      .video {
+        min-height: 520px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: radial-gradient(
+          circle at 50% 42%,
+          #263022,
+          #111511 48%,
+          #0b0d0b
+        );
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .video video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .play {
+        width: 86px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 1px solid #ffffff55;
+        background: #ffffff0e;
+        backdrop-filter: blur(8px);
+        font-size: 25px;
+        transition: 0.3s;
+      }
+      .video:hover .play {
+        background: var(--acid);
+        border-color: var(--acid);
+        color: #070807;
+        scale: 1.08;
+      }
+      .video-label {
+        position: absolute;
+        left: 24px;
+        bottom: 20px;
+        font: 11px monospace;
+        letter-spacing: 0.1em;
+        color: #c8cdc4;
+      }
+      .video-notes {
+        display: grid;
+        gap: 16px;
+      }
+      .note {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+      }
+      .note span {
+        font: 10px monospace;
+        color: var(--acid);
+      }
+      .note h4 {
+        font-size: 24px;
+        line-height: 1.1;
+        margin: 28px 0 9px;
+      }
+      .note p {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0;
+      }
+      .closing {
+        min-height: 76svh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      .closing h2 {
+        font-size: clamp(54px, 10vw, 140px);
+        line-height: 0.86;
+        letter-spacing: -0.075em;
+        margin: 0;
+      }
+      .closing p {
+        max-width: 770px;
+        margin: 34px auto 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+      .pill {
+        display: inline-flex;
+        margin-top: 42px;
+        padding: 10px 16px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        color: var(--acid);
+        font: 11px monospace;
+      }
+      .limitations {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 6vw;
+        padding-top: 45px;
+        margin-top: 70px;
+        border-top: 1px solid var(--line);
+        text-align: left;
+      }
+      .limitations h3 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .limitations p {
+        margin: 0;
+        color: var(--muted);
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px var(--pad);
+        color: #6d726a;
+        font: 10px monospace;
+        letter-spacing: 0.1em;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.75s ease,
+          transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.on {
+        opacity: 1;
+        transform: none;
+      }
+      @keyframes spin {
+        to {
+          rotate: 360deg;
+        }
+      }
+      @keyframes serve {
+        0% {
+          left: 16%;
+          top: 61%;
+        }
+        45% {
+          left: 51%;
+          top: 23%;
+        }
+        100% {
+          left: 81%;
+          top: 55%;
+        }
+      }
+      @media (max-width: 900px) {
+        .navlinks {
+          display: none;
+        }
+        .hero-grid,
+        .section-head,
+        .summary-grid,
+        .scene-top,
+        .feature-grid,
+        .feature-shell,
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-aside {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+          padding: 24px 0 0;
+        }
+        .method-strip {
+          grid-template-columns: 1fr;
+        }
+        .method-step {
+          min-height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          flex-direction: row;
+          gap: 20px;
+        }
+        .scene-analysis,
+        .problem-grid {
+          grid-template-columns: 1fr;
+        }
+        .scene-visual {
+          min-height: 420px;
+        }
+        .flowline {
+          grid-template-columns: 1fr 1fr;
+        }
+        .metrics {
+          grid-template-columns: 1fr 1fr;
+        }
+        .metric:nth-child(2) {
+          border-right: 0;
+        }
+        .metric:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+        .feature-hero {
+          min-height: auto;
+        }
+        .part-band .wrap {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .limitations {
+          grid-template-columns: 1fr;
+        }
+        .contrast-row {
+          grid-template-columns: 1fr 48px 1fr;
+        }
+        .camera-sticker {
+          position: relative;
+          right: auto;
+          top: auto;
+          width: min(220px, 70vw);
+          margin: 34px auto 0;
+          transform: rotate(2deg);
+        }
+        .duel-title {
+          margin-bottom: 46px;
+        }
+      }
+      @media (max-width: 560px) {
+        .flowline,
+        .metrics,
+        .video-duel {
+          grid-template-columns: 1fr;
+        }
+        .metric {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .metric:last-child {
+          border-bottom: 0;
+        }
+        .crowd {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .duel-vs {
+          display: none;
+        }
+        .contrast-row {
+          grid-template-columns: 1fr;
+        }
+        .contrast-vs {
+          height: 34px;
+          border: 0;
+          border-top: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+        .contrast-side.bad {
+          text-align: left;
+        }
+        .duel-screen {
+          height: 320px;
+        }
+        footer {
+          flex-direction: column;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .ball,
+        .target-ring {
+          animation: none;
+        }
+      }
+      .profile-page {
+        min-height: 88svh;
+        display: grid;
+        align-items: center;
+        background:
+          radial-gradient(circle at 13% 20%, #dfff0012, transparent 28%),
+          #090a09;
+      }
+      .profile-layout {
+        display: grid;
+        grid-template-columns: 0.72fr 1.28fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+      .profile-lead {
+        position: relative;
+        overflow: hidden;
+        min-height: 540px;
+        padding: clamp(30px, 4vw, 58px);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: linear-gradient(145deg, #1c2119, #0d0f0d);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .profile-lead:after {
+        content: "360°";
+        position: absolute;
+        right: -26px;
+        bottom: -38px;
+        color: #dfff000c;
+        font-size: clamp(130px, 18vw, 260px);
+        font-weight: 850;
+        line-height: 1;
+      }
+      .profile-number {
+        position: relative;
+        z-index: 1;
+        font: 11px monospace;
+        letter-spacing: 0.14em;
+        color: var(--acid);
+      }
+      .profile-lead h2 {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font-size: clamp(55px, 7vw, 96px);
+        line-height: 0.88;
+        letter-spacing: -0.065em;
+      }
+      .profile-lead h2 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px #f4f5ed70;
+      }
+      .profile-mark {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+        font: 11px monospace;
+        letter-spacing: 0.08em;
+      }
+      .profile-mark i {
+        width: 46px;
+        height: 1px;
+        background: var(--acid);
+      }
+      .profile-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .profile-card {
+        min-height: 166px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .profile-card small {
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.13em;
+      }
+      .profile-card b {
+        font-size: clamp(17px, 1.7vw, 24px);
+        line-height: 1.28;
+        font-weight: 520;
+        letter-spacing: -0.02em;
+      }
+      .profile-card.wide {
+        grid-column: 1/-1;
+        min-height: 180px;
+        background: linear-gradient(110deg, #171b15, #0d0f0d);
+      }
+      .profile-card.wide b {
+        max-width: 850px;
+        font-size: clamp(20px, 2vw, 29px);
+      }
+      .rationale-page {
+        min-height: 94svh;
+        display: grid;
+        align-items: center;
+      }
+      .rationale-head {
+        display: grid;
+        grid-template-columns: 0.62fr 1.38fr;
+        gap: 6vw;
+        align-items: end;
+        margin-bottom: 52px;
+      }
+      .rationale-head h2 {
+        margin: 0;
+        font-size: clamp(46px, 6vw, 82px);
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+      }
+      .rationale-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 760px;
+      }
+      .selection-axis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .axis-item {
+        padding: 18px 20px;
+        background: #0e100e;
+        border-right: 1px solid var(--line);
+      }
+      .axis-item:last-child {
+        border-right: 0;
+      }
+      .axis-item small {
+        display: block;
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+        margin-bottom: 6px;
+      }
+      .axis-item b {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .rationale-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .rationale-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 390px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+        display: flex;
+        flex-direction: column;
+      }
+      .rationale-card:before {
+        content: attr(data-no);
+        position: absolute;
+        right: 14px;
+        top: -22px;
+        color: #ffffff08;
+        font: 800 112px/1 monospace;
+      }
+      .rationale-card:nth-child(3) {
+        border-color: #dfff0055;
+        background: linear-gradient(145deg, #1b2315, #10120f);
+      }
+      .rationale-card .level {
+        position: relative;
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .rationale-card h3 {
+        position: relative;
+        margin: 56px 0 12px;
+        font-size: clamp(28px, 3vw, 43px);
+        line-height: 0.95;
+        letter-spacing: -0.045em;
+      }
+      .rationale-card > p {
+        position: relative;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .application {
+        position: relative;
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+      .application small {
+        display: block;
+        margin-bottom: 10px;
+        color: #777d74;
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .app-tags {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .app-tags span {
+        padding: 5px 8px;
+        border: 1px solid #ffffff1e;
+        border-radius: 99px;
+        color: #d7dbd2;
+        font: 10px monospace;
+      }
+      @media (max-width: 900px) {
+        .profile-layout,
+        .rationale-head {
+          grid-template-columns: 1fr;
+        }
+        .profile-lead {
+          min-height: 400px;
+        }
+        .rationale-grid {
+          grid-template-columns: 1fr;
+        }
+        .rationale-card {
+          min-height: 320px;
+        }
+        .selection-axis {
+          grid-template-columns: 1fr;
+        }
+        .axis-item {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .axis-item:last-child {
+          border-bottom: 0;
+        }
+      }
+      .profile-lead {
+        min-height: 450px;
+      }
+      .profile-card {
+        min-height: 124px;
+        padding: 20px;
+        gap: 10px;
+        justify-content: flex-start;
+      }
+      .profile-card small {
+        margin-bottom: 2px;
+      }
+      .profile-card b {
+        line-height: 1.18;
+      }
+      .profile-card.wide {
+        min-height: 124px;
+      }
+      @media (max-width: 560px) {
+        .profile-facts {
+          grid-template-columns: 1fr;
+        }
+        .profile-card.wide {
+          grid-column: auto;
+        }
+      }
+      .mate-hero {
+        min-height: 94svh;
+        overflow: hidden;
+      }
+      .mate-hero-grid {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 5vw;
+        align-items: end;
+      }
+      .mate-hero h2 {
+        margin: 0;
+        font-size: clamp(74px, 12vw, 172px);
+        line-height: 0.76;
+        letter-spacing: -0.09em;
+      }
+      .mate-hero h2 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #070807;
+      }
+      .mate-copy {
+        font-size: clamp(20px, 2.2vw, 31px);
+        line-height: 1.35;
+        margin: 0 0 28px;
+      }
+      .scope-note {
+        padding: 16px 18px;
+        border: 1px solid #07080755;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .scope-note b {
+        display: block;
+        margin-bottom: 5px;
+        font: 11px monospace;
+        letter-spacing: 0.1em;
+      }
+      .mate-court {
+        position: relative;
+        height: 180px;
+        margin-top: 28px;
+        border: 2px solid #070807;
+        border-radius: 18px;
+        background:
+          linear-gradient(
+            90deg,
+            transparent 49.8%,
+            #070807 50%,
+            transparent 50.2%
+          ),
+          linear-gradient(
+            0deg,
+            transparent 49.6%,
+            #070807 50%,
+            transparent 50.4%
+          );
+      }
+      .mate-court:before,
+      .mate-court:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #07080766;
+      }
+      .mate-court:before {
+        left: 33.33%;
+      }
+      .mate-court:after {
+        right: 33.33%;
+      }
+      .mate-court i {
+        position: absolute;
+        left: 50%;
+        top: -12px;
+        bottom: -12px;
+        width: 5px;
+        translate: -50% 0;
+        background: #070807;
+      }
+      .mate-court b {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        display: grid;
+        place-items: center;
+        width: 74px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #070807;
+        color: var(--acid);
+        font: 700 11px monospace;
+        z-index: 2;
+      }
+      .logic-flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        margin-bottom: 18px;
+      }
+      .logic-node {
+        position: relative;
+        min-height: 126px;
+        padding: 20px;
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+      }
+      .logic-node:last-child {
+        border-right: 0;
+        background: #dfff00;
+        color: #070807;
+      }
+      .logic-node span {
+        display: block;
+        margin-bottom: 24px;
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .logic-node:last-child span {
+        color: #070807;
+      }
+      .logic-node b {
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 520;
+      }
+      .logic-node:not(:last-child):after {
+        content: "→";
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        translate: 0 -50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--ink);
+        color: #070807;
+        font: 11px monospace;
+        z-index: 2;
+      }
+      .pain-grid-v2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .pain-v2 {
+        min-height: 250px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: #101210;
+      }
+      .pain-v2 span {
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .pain-v2 h3 {
+        margin: 42px 0 10px;
+        font-size: clamp(25px, 2.7vw, 38px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+      .pain-v2 p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .pain-v2 em {
+        color: var(--ink);
+        font-style: normal;
+      }
+      .need-banner {
+        margin-top: 16px;
+        padding: clamp(28px, 4vw, 50px);
+        border-radius: var(--r);
+        background: var(--acid);
+        color: #070807;
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 5vw;
+        align-items: center;
+      }
+      .need-banner small {
+        font: 11px monospace;
+        letter-spacing: 0.12em;
+      }
+      .need-banner b {
+        font-size: clamp(25px, 3.2vw, 45px);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        font-weight: 600;
+      }
+      .definition-stage {
+        background:
+          radial-gradient(circle at 70% 20%, #dfff0014, transparent 32%),
+          #090a09;
+      }
+      .definition-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 16px;
+      }
+      .definition-main,
+      .scope-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: clamp(30px, 5vw, 66px);
+        background: var(--panel);
+      }
+      .definition-main h2 {
+        margin: 10px 0 28px;
+        font-size: clamp(58px, 9vw, 126px);
+        line-height: 0.82;
+        letter-spacing: -0.075em;
+      }
+      .definition-main h2 span {
+        display: block;
+        color: var(--acid);
+      }
+      .definition-main p {
+        max-width: 760px;
+        margin: 0;
+        font-size: clamp(18px, 2vw, 27px);
+      }
+      .definition-chain {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 44px;
+      }
+      .definition-chain span {
+        padding: 8px 11px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        color: #d8dcd3;
+        font: 11px monospace;
+      }
+      .scope-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(145deg, #171c15, #0e100e);
+      }
+      .scope-card h3 {
+        margin: 34px 0 14px;
+        font-size: 30px;
+        line-height: 1.05;
+      }
+      .scope-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .sport-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 34px;
+      }
+      .sport-list div {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+      }
+      .sport-list span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .sport-list b {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .sport-list i {
+        color: var(--acid);
+        font-style: normal;
+      }
+      .eco-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .eco-card {
+        min-height: 580px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+        background: var(--panel);
+        display: flex;
+        flex-direction: column;
+      }
+      .eco-visual {
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 50%, #283223, #10130f 62%);
+      }
+      .eco-body {
+        padding: clamp(26px, 3vw, 42px);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .eco-body span {
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .eco-body h3 {
+        margin: 20px 0 12px;
+        font-size: clamp(30px, 3.5vw, 52px);
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+      }
+      .eco-body > p {
+        margin: 0 0 26px;
+        color: var(--muted);
+      }
+      .spec-list {
+        display: grid;
+        margin-top: auto;
+      }
+      .spec-list div {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 10px;
+        padding: 11px 0;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+      }
+      .spec-list i {
+        color: var(--cyan);
+        font-style: normal;
+        font-family: monospace;
+      }
+      .mount-demo .pole {
+        position: absolute;
+        left: 50%;
+        top: -20px;
+        bottom: -20px;
+        width: 28px;
+        translate: -50% 0;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #555, #bbb 45%, #444);
+      }
+      .mount-demo .strap {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 62px;
+        translate: -50% -50%;
+        border: 10px solid var(--acid);
+        border-radius: 24px;
+        box-shadow: 0 0 30px #dfff0033;
+      }
+      .mount-demo .stick {
+        position: absolute;
+        left: 50%;
+        bottom: 48%;
+        width: 8px;
+        height: 120px;
+        translate: -50% 0;
+        background: #e9ebe5;
+        rotate: 18deg;
+        transform-origin: bottom;
+      }
+      .mount-demo .stick:after {
+        content: "360°";
+        position: absolute;
+        left: 50%;
+        top: -24px;
+        translate: -50% 0;
+        width: 44px;
+        height: 58px;
+        border-radius: 12px;
+        background: #0a0b0a;
+        border: 1px solid #ffffff55;
+        display: grid;
+        place-items: center;
+        color: var(--acid);
+        font: 8px monospace;
+      }
+      .remote-demo {
+        display: grid;
+        place-items: center;
+      }
+      .remote-shell {
+        width: 128px;
+        height: 190px;
+        padding: 18px;
+        border-radius: 34px;
+        background: #171917;
+        border: 1px solid #ffffff35;
+        box-shadow: 0 22px 50px #0008;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      .remote-shell:before {
+        content: "REC";
+        color: #777;
+        font: 9px monospace;
+      }
+      .highlight-key {
+        display: grid;
+        place-items: center;
+        width: 84px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--acid);
+        color: #070807;
+        box-shadow: 0 0 0 8px #dfff001c;
+        font: 800 11px/1.15 monospace;
+        text-align: center;
+      }
+      .remote-led {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 10px var(--cyan);
+      }
+      .software-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .software-card {
+        min-height: 390px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+        display: flex;
+        flex-direction: column;
+      }
+      .software-card:nth-child(3) {
+        border-color: #dfff0055;
+        background: linear-gradient(145deg, #1b2216, #101210);
+      }
+      .software-card span {
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .software-card h3 {
+        margin: 55px 0 14px;
+        font-size: clamp(27px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .software-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .software-card ul {
+        margin: auto 0 0;
+        padding: 24px 0 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+      }
+      .software-card li {
+        padding: 5px 0;
+        font-size: 13px;
+      }
+      .software-card li:before {
+        content: "↳ ";
+        color: var(--acid);
+      }
+      .ai-map {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .ai-step {
+        min-height: 260px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #101210;
+      }
+      .ai-step span {
+        display: block;
+        color: var(--acid);
+        font: 11px monospace;
+      }
+      .ai-step h3 {
+        margin: 44px 0 10px;
+        font-size: 24px;
+        line-height: 1.05;
+      }
+      .ai-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .mode-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 16px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+      .mode-item {
+        padding: 20px;
+        background: #151715;
+        border-right: 1px solid var(--line);
+      }
+      .mode-item:last-child {
+        border: 0;
+      }
+      .mode-item small {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--acid);
+        font: 10px monospace;
+      }
+      .mode-item b {
+        font-size: 16px;
+        font-weight: 520;
+      }
+      .replay-callout {
+        margin-top: 16px;
+        padding: clamp(28px, 4vw, 52px);
+        border: 1px solid #dfff0050;
+        border-radius: var(--r);
+        background: linear-gradient(110deg, #202b17, #0f120e);
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 5vw;
+        align-items: center;
+      }
+      .replay-callout h3 {
+        margin: 8px 0 0;
+        font-size: clamp(30px, 4vw, 56px);
+        line-height: 1;
+      }
+      .replay-callout p {
+        margin: 0;
+        color: #c5cabf;
+        font-size: 17px;
+      }
+      .replay-callout strong {
+        color: var(--acid);
+      }
+      .ai-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .ai-proof {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: var(--panel);
+      }
+      .ai-proof.target {
+        border-color: #dfff0055;
+      }
+      .ai-proof-screen {
+        position: relative;
+        height: clamp(330px, 38vw, 520px);
+        background: radial-gradient(circle at 50% 45%, #273122, #0b0d0b 65%);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .ai-proof-screen video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ai-proof-screen:after {
+        content: attr(data-placeholder);
+        max-width: 240px;
+        text-align: center;
+        color: #ffffff35;
+        font: 12px/1.5 monospace;
+        letter-spacing: 0.08em;
+      }
+      .ai-proof-label {
+        position: absolute;
+        left: 20px;
+        top: 18px;
+        z-index: 2;
+        padding: 7px 10px;
+        border-radius: 99px;
+        background: #f1f2ec;
+        color: #070807;
+        font: 10px monospace;
+        letter-spacing: 0.08em;
+      }
+      .target .ai-proof-label {
+        background: var(--acid);
+      }
+      .ai-proof-body {
+        padding: 24px;
+      }
+      .ai-proof-body h3 {
+        margin: 0 0 14px;
+        font-size: 25px;
+      }
+      .proof-points {
+        display: grid;
+        gap: 8px;
+      }
+      .proof-points div {
+        padding-top: 8px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .proof-points b {
+        color: var(--ink);
+        font-weight: 520;
+      }
+      .vs-note {
+        text-align: center;
+        margin: 30px auto 0;
+        max-width: 900px;
+        color: var(--muted);
+      }
+      .vs-note strong {
+        color: var(--acid);
+      }
+      .section-head.stacked {
+        display: block;
+      }
+      .section-head.stacked h2 {
+        white-space: nowrap;
+        font-size: clamp(38px, 5.5vw, 76px);
+      }
+      .section-head.stacked > p {
+        margin-top: 24px;
+        max-width: 900px;
+      }
+      .ai-transition {
+        margin-top: 18px;
+        padding: 22px 26px;
+        border: 1px solid #dfff0060;
+        border-radius: 18px;
+        background: linear-gradient(100deg, #dfff0018, #10140f);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 22px;
+        align-items: center;
+      }
+      .ai-transition .step {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--acid);
+        color: #070807;
+        font: 800 12px monospace;
+      }
+      .ai-transition small {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--acid);
+        font: 10px monospace;
+        letter-spacing: 0.12em;
+      }
+      .ai-transition b {
+        font-size: clamp(17px, 2vw, 25px);
+        line-height: 1.2;
+      }
+      .ai-transition .arrow {
+        color: var(--acid);
+        font-size: 30px;
+      }
+      .placement-proof {
+        margin: 0 0 22px;
+        padding: 14px 16px;
+        border-left: 3px solid var(--acid);
+        background: #dfff0009;
+        color: #cbd0c5;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .placement-proof b {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .journey-line {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+      .journey-step {
+        min-height: 180px;
+        padding: 20px;
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .journey-step:last-child {
+        border: 0;
+      }
+      .journey-step span {
+        color: var(--acid);
+        font: 10px monospace;
+      }
+      .journey-step b {
+        font-size: 16px;
+        line-height: 1.15;
+      }
+      .journey-step small {
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .metric b.long {
+        font-size: clamp(22px, 2.6vw, 38px);
+      }
+      @media (max-width: 900px) {
+        .mate-hero-grid,
+        .definition-grid,
+        .need-banner,
+        .replay-callout {
+          grid-template-columns: 1fr;
+        }
+        .logic-flow {
+          grid-template-columns: 1fr;
+        }
+        .logic-node {
+          min-height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .logic-node:last-child {
+          border-bottom: 0;
+        }
+        .logic-node:not(:last-child):after {
+          content: "↓";
+          right: 24px;
+          top: auto;
+          bottom: -10px;
+        }
+        .eco-grid,
+        .software-grid,
+        .ai-map {
+          grid-template-columns: 1fr;
+        }
+        .mode-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .journey-line {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .journey-step:nth-child(3) {
+          border-right: 0;
+        }
+        .journey-step:nth-child(-n + 3) {
+          border-bottom: 1px solid var(--line);
+        }
+      }
+      @media (max-width: 560px) {
+        .section-head.stacked h2 {
+          white-space: normal;
+        }
+        .ai-transition {
+          grid-template-columns: auto 1fr;
+          padding: 18px;
+        }
+        .ai-transition .arrow {
+          display: none;
+        }
+        .pain-grid-v2,
+        .ai-compare,
+        .mode-row,
+        .journey-line {
+          grid-template-columns: 1fr;
+        }
+        .journey-step {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .journey-step:last-child {
+          border-bottom: 0;
+        }
+      }
+      .ai-proof-screen:after {
+        position: relative;
+        z-index: 1;
+        color: #ffffff55;
+        transition: opacity 0.2s;
+      }
+      .ai-proof-screen.ready:after {
+        opacity: 0;
+      }
+      .scene-analysis.expanded {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .scene-analysis.expanded .analysis-card {
+        min-height: 245px;
+      }
+      .analysis-card.problem {
+        border-color: #ff9d6a55;
+        background: linear-gradient(145deg, #1b1512, #0f110f);
+      }
+      .experience-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 9px;
+      }
+      .experience-list li {
+        position: relative;
+        padding-left: 17px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .experience-list li:before {
+        content: "↳";
+        position: absolute;
+        left: 0;
+        color: var(--acid);
+        font-family: monospace;
+      }
+      .experience-list b {
+        color: var(--ink);
+        font-weight: 520;
+      }
+      .analysis-card.problem .experience-list li:before {
+        color: #ff9d6a;
+      }
+      #feature ~ .section .section-head {
+        display: block;
+      }
+      #feature ~ .section .section-head h2 {
+        white-space: nowrap;
+        font-size: clamp(38px, 5.5vw, 76px);
+      }
+      #feature ~ .section .section-head > p {
+        margin-top: 24px;
+        max-width: 920px;
+      }
+      #feature ~ .section .section-head h2 {
+        font-size: clamp(28px, 4.3vw, 68px);
+      }
+      @media (max-width: 900px) {
+        .scene-analysis.expanded {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        #feature ~ .section .section-head h2 {
+          white-space: normal;
+        }
+      }
+      /* Camera-position polaroid: large 3:4 portrait, placed left of the comparison title. */
+      .duel-title {
+        max-width: 1280px;
+        min-height: 440px;
+        padding-left: clamp(270px, 25vw, 340px);
+        text-align: left;
+      }
+      .duel-title p {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .camera-sticker {
+        left: 0;
+        right: auto;
+        top: 4px;
+        width: clamp(230px, 22vw, 310px);
+        padding: 10px 10px 16px;
+        box-shadow: 0 22px 60px #000a;
+        transform: rotate(-4deg);
+      }
+      .camera-sticker:before {
+        width: 84px;
+        height: 28px;
+        rotate: 4deg;
+      }
+      .camera-sticker img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+      .camera-sticker figcaption {
+        margin-top: 11px;
+      }
+      .scene2-sticker {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: min(100%, 220px);
+        margin: 0;
+        transform: rotate(3deg);
+        z-index: 4;
+      }
+      .scene2-sticker:before {
+        rotate: -3deg;
+      }
+      @media (max-width: 900px) {
+        .duel-title {
+          min-height: 0;
+          padding-left: 0;
+          text-align: center;
+        }
+        .duel-title p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .camera-sticker {
+          position: relative;
+          left: auto;
+          right: auto;
+          top: auto;
+          width: min(280px, 82vw);
+          margin: 38px auto 0;
+          transform: rotate(-2deg);
+        }
+      }
+      @media (max-width: 900px) {
+        .scene2-sticker {
+          width: min(220px, 72vw);
+          margin: 0;
+          transform: rotate(2deg);
+        }
+      }
+      /* Compact editorial pass: tighter rhythm, smaller cards, clearer evidence hierarchy. */
+      .section {
+        padding: clamp(64px, 7vw, 98px) var(--pad);
+      }
+      .hero {
+        min-height: 82svh;
+        padding-top: 105px;
+      }
+      .hero-grid {
+        gap: 5vw;
+      }
+      .hero h1 {
+        font-size: clamp(48px, 7.6vw, 112px);
+        margin-bottom: 0;
+      }
+      .hero h1 small {
+        display: block;
+        margin-top: 28px;
+        max-width: 760px;
+        color: var(--ink);
+        font-size: clamp(18px, 2vw, 28px);
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        font-weight: 520;
+        -webkit-text-stroke: 0;
+      }
+      .scroll {
+        margin-top: 34px;
+      }
+      .profile-page,
+      .rationale-page,
+      .mate-hero {
+        min-height: auto;
+      }
+      .profile-lead {
+        min-height: 380px;
+      }
+      .profile-card,
+      .profile-card.wide {
+        min-height: 110px;
+      }
+      .rationale-head {
+        display: block;
+        margin-bottom: 32px;
+      }
+      .selection-axis {
+        margin-bottom: 12px;
+      }
+      .rationale-card {
+        min-height: 310px;
+        padding: 24px;
+      }
+      .rationale-card h3 {
+        margin: 42px 0 10px;
+      }
+      .scene-block {
+        padding: clamp(58px, 6.5vw, 88px) 0;
+      }
+      .scene-top {
+        min-height: 440px;
+      }
+      .scene-visual {
+        min-height: 440px;
+      }
+      .scene-copy {
+        padding: clamp(26px, 3.4vw, 44px);
+      }
+      .scene-copy h3 {
+        font-size: clamp(40px, 5vw, 66px);
+      }
+      .scene-analysis.expanded .analysis-card,
+      .analysis-card {
+        min-height: 190px;
+      }
+      .analysis-card h4 {
+        margin-top: 20px;
+      }
+      .scene1-top {
+        display: block;
+        min-height: 0;
+      }
+      .scene1-top .scene-copy {
+        min-height: 330px;
+      }
+      .scene2-top {
+        grid-template-columns: 1fr 0.88fr 0.62fr;
+        min-height: 420px;
+      }
+      .scene2-top .scene-copy,
+      .scene2-top .scene-visual {
+        min-height: 420px;
+      }
+      .scene2-photo {
+        min-height: 420px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: radial-gradient(circle at 50% 42%, #293126, #111411 65%);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .section-head {
+        margin-bottom: 46px;
+      }
+      .duel-title {
+        min-height: 370px;
+        margin-bottom: 46px;
+      }
+      .contrast-list {
+        margin-top: 26px;
+      }
+      .contrast-side {
+        padding-top: 19px;
+        padding-bottom: 19px;
+      }
+      .takeaway {
+        padding: clamp(30px, 4vw, 52px);
+      }
+      .pain-v2 {
+        min-height: 220px;
+        padding: 24px;
+      }
+      .pain-v2 h3 {
+        margin-top: 30px;
+      }
+      .definition-main,
+      .scope-card {
+        padding: clamp(28px, 4vw, 48px);
+      }
+      .eco-card {
+        min-height: 510px;
+      }
+      .software-card {
+        min-height: 330px;
+        padding: 26px;
+      }
+      .software-card h3 {
+        margin-top: 38px;
+      }
+      .ai-step {
+        min-height: 220px;
+      }
+      .ai-step h3 {
+        margin-top: 30px;
+      }
+      .journey-step {
+        min-height: 150px;
+      }
+      @media (max-width: 1050px) {
+        .scene2-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .scene2-photo {
+          grid-column: 1/-1;
+          min-height: 330px;
+        }
+        .scene2-sticker {
+          width: 220px;
+        }
+      }
+      @media (max-width: 900px) {
+        .hero {
+          min-height: auto;
+        }
+        .scene2-top {
+          grid-template-columns: 1fr;
+        }
+        .scene2-photo {
+          grid-column: auto;
+          min-height: 330px;
+        }
+        .scene-top,
+        .scene2-top .scene-copy,
+        .scene2-top .scene-visual {
+          min-height: 380px;
+        }
+      }
+      @media (max-width: 560px) {
+        .section {
+          padding: 58px var(--pad);
+        }
+        .hero h1 {
+          font-size: clamp(42px, 13vw, 64px);
+        }
+        .hero h1 small {
+          font-size: 17px;
+          margin-top: 22px;
+        }
+        .scene-top,
+        .scene2-top .scene-copy,
+        .scene2-top .scene-visual {
+          min-height: 340px;
+        }
+        .scene2-photo {
+          min-height: 300px;
+        }
+      }
+      /* Final compact pass: preserve micro labels while reducing display and body type. */
+      .section {
+        padding: clamp(48px, 5.4vw, 76px) var(--pad);
+      }
+      .part-band {
+        padding: 20px var(--pad);
+      }
+      .part-band b {
+        font-size: clamp(22px, 3.2vw, 42px);
+      }
+      .hero {
+        min-height: 72svh;
+        padding-top: 92px;
+      }
+      .hero h1 {
+        font-size: clamp(44px, 6.8vw, 96px);
+      }
+      .hero h1 small {
+        margin-top: 22px;
+        font-size: clamp(16px, 1.7vw, 23px);
+      }
+      .hero-grid {
+        gap: 4vw;
+      }
+      .scroll {
+        margin-top: 26px;
+      }
+      .profile-layout {
+        gap: 14px;
+      }
+      .profile-lead {
+        min-height: 330px;
+        padding: clamp(26px, 3.2vw, 42px);
+      }
+      .profile-lead h2 {
+        font-size: clamp(46px, 5.8vw, 74px);
+      }
+      .profile-card,
+      .profile-card.wide {
+        min-height: 96px;
+        padding: 17px;
+      }
+      .profile-card b {
+        font-size: clamp(15px, 1.4vw, 20px);
+      }
+      .profile-card.wide b {
+        font-size: clamp(17px, 1.65vw, 23px);
+      }
+      .rationale-head {
+        margin-bottom: 24px;
+      }
+      .rationale-head h2 {
+        font-size: clamp(38px, 4.8vw, 62px);
+      }
+      .selection-axis {
+        margin-bottom: 10px;
+      }
+      .axis-item {
+        padding: 14px 17px;
+      }
+      .rationale-card {
+        min-height: 270px;
+        padding: 21px;
+      }
+      .rationale-card h3 {
+        margin: 34px 0 8px;
+        font-size: clamp(24px, 2.5vw, 35px);
+      }
+      .application {
+        padding-top: 18px;
+      }
+      .scene-block {
+        padding: clamp(42px, 5vw, 66px) 0;
+      }
+      .scene-top {
+        min-height: 370px;
+      }
+      .scene-copy {
+        padding: clamp(23px, 3vw, 36px);
+      }
+      .scene-copy h3 {
+        margin: 16px 0 18px;
+        font-size: clamp(32px, 4vw, 50px);
+        line-height: 1;
+      }
+      .scene-copy > div > p {
+        font-size: 16px;
+      }
+      .scene-visual {
+        min-height: 370px;
+      }
+      .scene-analysis {
+        margin-top: 12px;
+      }
+      .scene-analysis.expanded .analysis-card,
+      .analysis-card {
+        min-height: 166px;
+        padding: 20px;
+      }
+      .analysis-card h4 {
+        margin: 16px 0 8px;
+        font-size: 17px;
+      }
+      .scene2-top {
+        min-height: 360px;
+      }
+      .scene2-top .scene-copy,
+      .scene2-top .scene-visual,
+      .scene2-photo {
+        min-height: 360px;
+      }
+      .scene2-photo {
+        padding: 18px;
+      }
+      .scene3-intro {
+        padding-top: 0;
+        padding-bottom: 38px;
+        border-top: 0;
+      }
+      .scene3-intro .scene-top {
+        min-height: 350px;
+      }
+      .scene3-intro .scene-copy,
+      .scene3-intro .scene-visual {
+        min-height: 350px;
+      }
+      .section-head {
+        display: block;
+        margin-bottom: 30px;
+      }
+      .section-head h2,
+      #feature ~ .section .section-head h2 {
+        font-size: clamp(30px, 4vw, 54px);
+        line-height: 1;
+        white-space: normal;
+      }
+      .section-head p,
+      #feature ~ .section .section-head > p {
+        max-width: 880px;
+        margin-top: 13px;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .eyebrow {
+        margin-bottom: 12px;
+      }
+      .comparison-row > div {
+        padding: 14px 17px;
+      }
+      .takeaway {
+        margin-top: 18px;
+        padding: clamp(22px, 3vw, 36px);
+        font-size: clamp(22px, 3vw, 38px);
+      }
+      .duel-title {
+        min-height: 300px;
+        margin-bottom: 34px;
+      }
+      .duel-title h2 {
+        font-size: clamp(42px, 6.2vw, 82px);
+      }
+      .duel-title p {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      .contrast-list {
+        margin-top: 20px;
+      }
+      .contrast-side {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+      .contrast-side b {
+        font-size: clamp(16px, 1.7vw, 23px);
+      }
+      .duel-claim {
+        margin-top: 36px;
+        font-size: clamp(25px, 3.6vw, 46px);
+      }
+      .mate-hero h2 {
+        font-size: clamp(58px, 9vw, 116px);
+      }
+      .mate-copy {
+        font-size: clamp(17px, 1.8vw, 24px);
+        margin-bottom: 20px;
+      }
+      .mate-court {
+        height: 145px;
+        margin-top: 20px;
+      }
+      .logic-node {
+        min-height: 104px;
+        padding: 16px;
+      }
+      .logic-node span {
+        margin-bottom: 17px;
+      }
+      .pain-grid-v2 {
+        gap: 11px;
+      }
+      .pain-v2 {
+        min-height: 190px;
+        padding: 20px;
+      }
+      .pain-v2 h3 {
+        margin: 23px 0 8px;
+        font-size: clamp(22px, 2.3vw, 32px);
+      }
+      .need-banner {
+        margin-top: 12px;
+        padding: clamp(20px, 2.7vw, 32px);
+      }
+      .need-banner b {
+        font-size: clamp(20px, 2.5vw, 32px);
+      }
+      .definition-main,
+      .scope-card {
+        padding: clamp(24px, 3vw, 38px);
+      }
+      .definition-main h2 {
+        font-size: clamp(42px, 6.5vw, 82px);
+        margin-bottom: 20px;
+      }
+      .definition-main p {
+        font-size: clamp(16px, 1.65vw, 22px);
+      }
+      .definition-chain {
+        margin-top: 28px;
+      }
+      .scope-card h3 {
+        margin: 22px 0 10px;
+        font-size: 25px;
+      }
+      .sport-list {
+        margin-top: 24px;
+      }
+      .eco-card {
+        min-height: 450px;
+      }
+      .eco-visual {
+        height: 215px;
+      }
+      .eco-body {
+        padding: clamp(22px, 2.5vw, 34px);
+      }
+      .eco-body h3 {
+        font-size: clamp(25px, 2.8vw, 40px);
+        margin: 16px 0 10px;
+      }
+      .eco-body > p {
+        margin-bottom: 18px;
+      }
+      .software-card {
+        min-height: 285px;
+        padding: 22px;
+      }
+      .software-card h3 {
+        margin: 29px 0 10px;
+        font-size: clamp(23px, 2.4vw, 34px);
+      }
+      .software-card ul {
+        padding-top: 17px;
+      }
+      .ai-transition {
+        padding: 17px 21px;
+      }
+      .ai-step {
+        min-height: 186px;
+        padding: 20px;
+      }
+      .ai-step h3 {
+        margin: 23px 0 8px;
+        font-size: 21px;
+      }
+      .mode-item {
+        padding: 16px;
+      }
+      .mode-item b {
+        font-size: 14px;
+      }
+      .replay-callout {
+        padding: clamp(20px, 2.8vw, 34px);
+        grid-template-columns: 1fr;
+      }
+      .replay-callout h3 {
+        font-size: clamp(24px, 3vw, 38px);
+        white-space: nowrap;
+      }
+      .replay-callout p {
+        font-size: 15px;
+      }
+      .ai-proof-body {
+        padding: 20px;
+      }
+      .ai-proof-body h3 {
+        font-size: 22px;
+      }
+      .journey-step {
+        min-height: 126px;
+        padding: 16px;
+      }
+      .closing {
+        min-height: 60svh;
+      }
+      .closing h2 {
+        font-size: clamp(44px, 7.5vw, 96px);
+      }
+      .closing p {
+        margin-top: 24px;
+        font-size: 16px;
+      }
+      .pill {
+        margin-top: 30px;
+      }
+      .limitations {
+        padding-top: 30px;
+        margin-top: 44px;
+        gap: 4vw;
+      }
+      .limitations h3 {
+        font-size: 19px;
+      }
+      @media (max-width: 900px) {
+        .section {
+          padding: 50px var(--pad);
+        }
+        .profile-lead {
+          min-height: 300px;
+        }
+        .scene2-top,
+        .scene-top {
+          min-height: 0;
+        }
+        .scene2-top .scene-copy,
+        .scene2-top .scene-visual,
+        .scene2-photo,
+        .scene3-intro .scene-copy,
+        .scene3-intro .scene-visual {
+          min-height: 310px;
+        }
+        .duel-title {
+          min-height: 0;
+        }
+        .scene3-intro {
+          padding-bottom: 28px;
+        }
+        .replay-callout h3 {
+          white-space: normal;
+        }
+      }
+      @media (max-width: 560px) {
+        .section {
+          padding: 44px var(--pad);
+        }
+        .hero h1 {
+          font-size: clamp(38px, 11.5vw, 54px);
+        }
+        .hero h1 small {
+          font-size: 15px;
+        }
+        .profile-card,
+        .profile-card.wide {
+          min-height: 88px;
+        }
+        .scene2-top .scene-copy,
+        .scene2-top .scene-visual,
+        .scene2-photo,
+        .scene3-intro .scene-copy,
+        .scene3-intro .scene-visual {
+          min-height: 280px;
+        }
+        .takeaway {
+          font-size: 22px;
+        }
+        .need-banner {
+          gap: 14px;
+        }
+      }
+      /* Browser feedback: reduce the comparison sticker and soften large callouts. */
+      .duel-title {
+        min-height: 260px;
+        padding-left: clamp(220px, 21vw, 270px);
+        margin-bottom: 38px;
+      }
+      .duel-title .camera-sticker {
+        width: clamp(180px, 18vw, 240px);
+      }
+      .video-duel {
+        margin-top: 48px;
+      }
+      .takeaway {
+        font-size: clamp(18px, 2vw, 26px);
+        line-height: 1.35;
+      }
+      .definition-main h2 {
+        font-size: clamp(30px, 4.4vw, 54px);
+        line-height: 1.32;
+        letter-spacing: 0.035em;
+      }
+      @media (max-width: 900px) {
+        .duel-title {
+          min-height: 0;
+          padding-left: 0;
+          margin-bottom: 34px;
+        }
+        .duel-title .camera-sticker {
+          width: min(190px, 58vw);
+          margin: 22px auto 12px;
+        }
+        .video-duel {
+          margin-top: 68px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <div class="progress" aria-hidden="true"></div>
+    <nav class="nav" aria-label="页面导航">
+      <a class="brand" href="#top"><i></i>X6 / FIELD STUDY</a>
+      <div class="navlinks">
+        <a href="#report">01 体验报告</a><a href="#feature">02 功能设计</a>
+      </div>
+    </nav>
+    <main>
+      <section class="section hero" id="top">
+        <div class="wrap hero-grid">
+          <div class="reveal">
+            <div class="eyebrow">HARDWARE PRODUCT MANAGER · WRITTEN TEST</div>
+            <h1>
+              从「拍到所有」<span>到「选出重要」：</span
+              ><small>Insta360 X6 场景化体验报告&amp;创新功能</small>
+            </h1>
+            <a class="scroll" href="#report">START THE REPORT</a>
+          </div>
+          <aside class="hero-aside reveal">
+            <div class="meta">
+              <div><small>Candidate</small><b>付权佳</b></div>
+              <div><small>Position</small><b>硬件产品经理</b></div>
+              <div><small>Device</small><b>Insta360 X6</b></div>
+              <div><small>Firmware</small><b>v1.1.7</b></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <div class="part-band" id="report">
+        <div class="wrap">
+          <b>PART 01 · 产品体验报告</b
+          ><span>JUDGMENT → EVIDENCE → OPPORTUNITY</span>
+        </div>
+      </div>
+      <section class="section profile-page">
+        <div class="wrap profile-layout">
+          <div class="profile-lead reveal">
+            <span class="profile-number">01 / EXPERIENCE PROFILE</span>
+            <h2>体验者<br /><span>画像</span></h2>
+            <div class="profile-mark">
+              <i></i>FROM CAMERA USER TO 360° BEGINNER
+            </div>
+          </div>
+          <div class="profile-facts">
+            <article class="profile-card reveal">
+              <small>IDENTITY / USE CASE</small
+              ><b
+                >在校学生，主要拍摄旅行和运动场景，包括排球、游泳、潜水与滑雪</b
+              >
+            </article>
+            <article class="profile-card reveal">
+              <small>CAMERA EXPERIENCE</small
+              ><b>三年微单拍摄经验，刚开始使用运动相机</b>
+            </article>
+            <article class="profile-card wide reveal">
+              <small>PREVIOUS DEVICES</small
+              ><b>富士 X-S20、普通运动相机、云台相机等</b>
+            </article>
+            <article class="profile-card wide reveal">
+              <small>REPRESENTATIVE USERS</small
+              ><b
+                >有明确运动拍摄需求，或已有一定摄影经验、希望用全景影像尝试新视角的用户。</b
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section rationale-page">
+        <div class="wrap">
+          <div class="rationale-head reveal">
+            <div>
+              <div class="eyebrow">从尝鲜，到刚需 · FROM TRIAL TO NEED</div>
+              <h2>体验场景</h2>
+            </div>
+          </div>
+          <div class="selection-axis reveal">
+            <div class="axis-item">
+              <small>01 / EXPERIENCE PATH</small
+              ><b>从认识 360° 到判断它的独特价值</b>
+            </div>
+            <div class="axis-item">
+              <small>02 / SCENE SPAN</small><b>从日常休闲到专业运动</b>
+            </div>
+            <div class="axis-item">
+              <small>03 / UNCERTAINTY</small><b>事件可控性：低 → 中 → 高</b>
+            </div>
+          </div>
+          <div class="rationale-grid">
+            <article class="rationale-card reveal" data-no="01">
+              <span class="level">LOW UNCERTAINTY</span>
+              <h3>日常拍摄</h3>
+              <p>
+                先在可以重拍、随时调整的日常场景中熟悉“先拍摄、后取景”，感受
+                360° 带来的新视角和创作方式。
+              </p>
+              <div class="application">
+                <small>REPRESENTATIVE APPLICATIONS</small>
+                <div class="app-tags">
+                  <span>旅游记录</span><span>日常 Vlog</span
+                  ><span>创意短视频</span>
+                </div>
+              </div>
+            </article>
+            <article class="rationale-card reveal" data-no="02">
+              <span class="level">MEDIUM UNCERTAINTY</span>
+              <h3>人群见面会</h3>
+              <p>
+                人群限制了移动空间，嘉宾停留短、遮挡多，正好观察全景记录能否在来不及构图时提高成功率。
+              </p>
+              <div class="application">
+                <small>REPRESENTATIVE APPLICATIONS</small>
+                <div class="app-tags">
+                  <span>发布会</span><span>见面会</span><span>演出活动</span>
+                </div>
+              </div>
+            </article>
+            <article class="rationale-card reveal" data-no="03">
+              <span class="level">HIGH UNCERTAINTY</span>
+              <h3>排球运动</h3>
+              <p>
+                球路和攻防变化很难预判，固定机位容易漏掉关键动作。这个场景最能看出
+                360° 的价值，也最容易暴露真实问题。
+              </p>
+              <div class="application">
+                <small>REPRESENTATIVE APPLICATIONS</small>
+                <div class="app-tags">
+                  <span>赛事记录</span><span>训练复盘</span
+                  ><span>高光剪辑</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="scenes">
+        <div class="wrap">
+          <article class="scene-block">
+            <div class="scene-top scene1-top">
+              <div class="scene-copy reveal">
+                <div>
+                  <span class="scene-index">SCENE 01 / CONTROLLED</span>
+                  <h3>日常拍摄</h3>
+                </div>
+                <div class="tagrow">
+                  <span class="tag">小行星视角</span
+                  ><span class="tag">无人机跟拍感</span
+                  ><span class="tag">环境式自拍</span>
+                </div>
+              </div>
+            </div>
+            <div class="scene-analysis expanded">
+              <div class="analysis-card reveal">
+                <span>WHAT FELT NEW</span>
+                <h4>三个动作，拍出普通自拍难以实现的视角</h4>
+                <ul class="experience-list">
+                  <li>
+                    <b>举过头顶：</b
+                    >快速生成小行星视角，把人物和周围环境收进同一画面。
+                  </li>
+                  <li>
+                    <b>肩扛隐形自拍杆：</b
+                    >得到类似无人机跟拍的第三人称镜头，一个人也能边走边拍。
+                  </li>
+                  <li>
+                    <b>低角度仰拍：</b
+                    >让人物与树冠、高楼、天空同时入镜，普通自拍很难兼顾这种尺度。
+                  </li>
+                </ul>
+              </div>
+              <div class="analysis-card problem reveal">
+                <span>IMAGE + THERMAL</span>
+                <h4>近距离画质和高规格发热仍需取舍</h4>
+                <ul class="experience-list">
+                  <li>
+                    <b>近距离虚焦：</b
+                    >与手机在同一距离拍摄时更明显，不适合离主体太近。
+                  </li>
+                  <li>
+                    <b>8K 30fps 发热：</b
+                    >录制时尚可握持，但关机后散热较慢，会影响连续拍摄的信心。
+                  </li>
+                </ul>
+              </div>
+              <div class="analysis-card problem reveal">
+                <span>CONTROL / Q BUTTON</span>
+                <h4>使用频率不高，按压却不够顺手</h4>
+                <p>
+                  日常拍摄很少用到 Q
+                  键，它的位置和手感也不利于快速操作。如果它是屏幕失灵时的备用入口，需要更清楚地说明使用场景，并加强盲操作反馈。
+                </p>
+              </div>
+              <div class="analysis-card problem reveal">
+                <span>WATERPROOF SAFETY</span>
+                <h4>舱门没锁紧，却不容易被发现</h4>
+                <p>
+                  充电口与电池仓的开关阻力偏小，比 Action 5 Pro
+                  更容易误开。舱门留有缝隙时，相机仍无提示并可继续使用；用于潜水时，最好增加未锁紧检测和明确的防水警告。
+                </p>
+              </div>
+            </div>
+          </article>
+          <article class="scene-block">
+            <div class="scene-top scene2-top">
+              <div class="scene-copy reveal">
+                <div>
+                  <span class="scene-index"
+                    >SCENE 02 / POSITION CONSTRAINED</span
+                  >
+                  <h3>人群中的见面会</h3>
+                </div>
+                <div class="tagrow">
+                  <span class="tag">机位受限</span
+                  ><span class="tag">举高拍摄</span
+                  ><span class="tag">不可重来</span>
+                </div>
+              </div>
+              <div class="scene-visual crowd-viz reveal">
+                <span class="visual-label">VISUAL / CROWD OCCLUSION</span>
+                <div class="crowd">
+                  <i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person target"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i
+                  ><i class="person"></i><i class="person"></i>
+                </div>
+                <div class="target-ring"></div>
+                <div class="visual-caption">
+                  <b>方向判断压力 ↓</b><span>物理遮挡仍然存在</span>
+                </div>
+              </div>
+              <div class="scene2-photo reveal">
+                <figure class="camera-sticker scene2-sticker">
+                  <img
+                    src="photo.jpg"
+                    alt="人群见面会现场记录"
+                    loading="lazy"
+                  />
+                  <figcaption><b>LIVE MOMENT</b>见面会现场记录</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="scene-analysis expanded">
+              <div class="analysis-card reveal">
+                <span>REAL CONSTRAINT</span>
+                <h4>看不到屏幕，也来不及重新构图</h4>
+                <p>
+                  人群一直在移动，周围又有大量手机举起；嘉宾只会在局部位置短暂停留。拍摄者无法靠近，也很难保证镜头始终对准关键人物。
+                </p>
+              </div>
+              <div class="analysis-card reveal">
+                <span>WHAT WORKED</span>
+                <h4>只用举过人群，方向交给后期</h4>
+                <p>
+                  把相机举高后，不用再判断嘉宾位于镜头哪一侧。360°
+                  先保留周围画面，回看时再选择方向和画幅，减少拍错方向的风险。
+                </p>
+              </div>
+              <div class="analysis-card reveal">
+                <span>UNIQUE VALUE</span>
+                <h4>高位全景，无痛获得完整合影</h4>
+                <p>
+                  相机举过人群后，一次就能把周围的人收进画面，不必现场反复站位、点人数或调整构图；活动结束后再从全景素材中选出合影。
+                </p>
+              </div>
+              <div class="analysis-card problem reveal">
+                <span>LIMIT + OPPORTUNITY</span>
+                <h4>全景能补方向，但穿不过人墙</h4>
+                <p>
+                  人物如果被前排完全挡住，360°
+                  也无法补回没有拍到的信息。更实际的做法是在拍摄前提示举高高度、检测遮挡，并建议使用延长杆或更换机位。
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section duel-section" id="volleyball-compare">
+        <div class="wrap">
+          <article class="scene-block scene3-intro">
+            <div class="scene-top">
+              <div class="scene-copy reveal">
+                <div>
+                  <span class="scene-index"
+                    >SCENE 03 / EVENT UNPREDICTABLE</span
+                  >
+                  <h3>排球运动</h3>
+                </div>
+                <div class="tagrow">
+                  <span class="tag">高速运动</span
+                  ><span class="tag">跨区域事件</span
+                  ><span class="tag">长时素材</span
+                  ><span class="tag">最高价值</span>
+                </div>
+              </div>
+              <div class="scene-visual volley-viz reveal">
+                <span class="visual-label">VISUAL / FULL-COURT COVERAGE</span>
+                <div class="court">
+                  <div class="court-inner"></div>
+                  <div class="net"></div>
+                  <div class="trajectory"></div>
+                  <div class="ball"></div>
+                </div>
+                <div class="visual-caption">
+                  <b>错过关键视角的风险 ↓</b><span>定位回合与剪辑成本 ↑</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <div class="duel-title reveal">
+            <div class="eyebrow">VOLLEYBALL VIDEO COMPARISON</div>
+            <h2>同一场球<span>两种叙事</span></h2>
+            <p>
+              把 X6
+              和排球博主常用的手机后排固定机位放在一起比较。区别不只是谁“拍得更多”，更在于谁能把比赛讲清楚。
+            </p>
+            <div class="shoot-context">
+              <i></i>SAME VENUE · 两段视频拍摄于同一排球场地，仅设备与机位不同
+            </div>
+            <figure class="camera-sticker">
+              <img
+                src="camera.jpg"
+                alt="排球场内 X6 相机安装位置记录"
+                loading="lazy"
+              />
+              <figcaption><b>CAMERA POSITION</b>X6 现场机位记录</figcaption>
+            </figure>
+          </div>
+          <div class="video-duel">
+            <article class="duel-video x6 reveal">
+              <div class="duel-screen" data-video-slot="x6">
+                <span class="duel-badge">360° / X6</span
+                ><video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="使用 X6 拍摄并通过 Insta360 APP 剪辑的排球视频"
+                >
+                  <source src="insta.mp4" type="video/mp4" />
+                  当前浏览器不支持视频播放。
+                </video>
+              </div>
+              <div class="duel-meta">
+                <h3>全景相机视角</h3>
+                <p>使用 X6 拍摄 · Insta360 APP 剪辑</p>
+              </div>
+            </article>
+            <div class="duel-vs">VS</div>
+            <article class="duel-video phone reveal">
+              <div class="duel-screen" data-video-slot="phone">
+                <span class="duel-badge">PHONE / FIXED</span
+                ><video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="普通手机后排固定视角拍摄的排球视频"
+                >
+                  <source src="phone.mp4" type="video/mp4" />
+                  当前浏览器不支持视频播放。
+                </video>
+              </div>
+              <div class="duel-meta">
+                <h3>普通手机视角</h3>
+                <p>小红书排球博主常用拍摄视角</p>
+              </div>
+            </article>
+          </div>
+          <div class="contrast-list reveal">
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>01 / SEE THE GAME</small><b>全场俯瞰，球路一目了然</b>
+                <p>赛事直播般的上帝视角，攻防流转尽收眼底。</p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>BACK-ROW VIEW</small><b>后排平视，球路层层被挡</b>
+                <p>镜头对准球场，却只拍到前排球员的背影。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>02 / CATCH THE MOMENT</small
+                ><b>高光不漏，制胜瞬间清晰入镜</b>
+                <p>起跳、扣杀、拦网，精彩发生在哪里都看得见。</p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>OCCLUDED MOMENT</small><b>人影一挡，高光只剩想象</b>
+                <p>最关键的一秒，常常恰好消失在人墙之后。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>03 / MOVE WITH THE BALL</small
+                ><b>镜头追球，丝滑运镜拉满冲击</b>
+                <p>视角随球路推进、转向、放大，让每次攻防更有临场感。</p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>LOCKED FRAME</small><b>视角钉死，精彩拍成流水账</b>
+                <p>画面始终不动，再激烈的比赛也少了叙事张力。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>04 / KEEP IT IN FRAME</small
+                ><b>高球远球，全程留在画面里</b>
+                <p>球飞得再高、再远，后期依然可以重新锁定。</p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>OUT OF FRAME</small><b>一高一远，球就飞出画框</b>
+                <p>固定构图无法预判球路，关键来回随时断片。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>05 / JUDGE THE PLAY</small
+                ><b>裁判视角，触网出界有据可看</b>
+                <p>边线、球网与落点同屏呈现，争议回合也能回看判断。</p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>BLIND SPOT</small><b>争议位置，镜头之外无从判断</b>
+                <p>触网看不清、落点拍不到，回放也还原不了现场。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>06 / ONE TAKE, TWO TEAMS</small
+                ><b>一份素材，两边队伍都能当主角</b>
+                <p>
+                  同一段全景素材可分别重构双方视角，一次拍摄，双向复盘、双份高光。
+                </p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>ONE-SIDED STORY</small><b>一个机位，只有一边站在主场</b>
+                <p>固定镜头天然偏向拍摄侧，另一队常被压缩成远景与陪衬。</p>
+              </div>
+            </div>
+            <div class="contrast-row">
+              <div class="contrast-side good">
+                <small>07 / ABOVE THE GLARE</small
+                ><b>高位俯拍，避开眩光，人物清晰登场</b>
+                <p>
+                  抬高视点，主动错开人物与顶灯、点光源，让轮廓和动作始终清楚。
+                </p>
+              </div>
+              <div class="contrast-vs">VS</div>
+              <div class="contrast-side bad">
+                <small>LIGHT COLLISION</small
+                ><b>低位仰拍，人光重叠，动作淹没在亮斑里</b>
+                <p>
+                  人物与点光源挤在同一视线，轮廓被眩光吞没，关键动作失去细节。
+                </p>
+              </div>
+            </div>
+          </div>
+          <p class="duel-claim reveal">
+            手机记录<strong>一个固定画面</strong>，<br />X6
+            留住<strong>整场比赛的可能性</strong>。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="comparison">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">CROSS-SCENE ANALYSIS</div>
+              <h2>三个场景，一个规律</h2>
+            </div>
+            <p>
+              横向比较三个场景，判断哪些问题普遍存在、哪些价值只有全景相机能提供，以及产品资源最值得投向哪里。
+            </p>
+          </div>
+          <div class="table-scroll reveal">
+            <div class="comparison">
+              <div class="comparison-row comparison-head">
+                <div>评价维度</div>
+                <div>日常拍摄</div>
+                <div>人群见面会</div>
+                <div>排球运动</div>
+              </div>
+              <div class="comparison-row">
+                <div><b>现场不确定性</b></div>
+                <div>
+                  <div class="score"><i class="on"></i><i></i><i></i></div>
+                </div>
+                <div>
+                  <div class="score">
+                    <i class="on"></i><i class="on"></i><i></i>
+                  </div>
+                </div>
+                <div>
+                  <div class="score">
+                    <i class="on"></i><i class="on"></i><i class="on"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="comparison-row">
+                <div><b>360°独特价值</b></div>
+                <div>降低构图压力</div>
+                <div>提高机位容错</div>
+                <div>覆盖完整赛场事件</div>
+              </div>
+              <div class="comparison-row">
+                <div><b>核心限制</b></div>
+                <div>替代方案多</div>
+                <div>无法消除物理遮挡</div>
+                <div>高光定位与追踪成本</div>
+              </div>
+              <div class="comparison-row">
+                <div><b>机会优先级</b></div>
+                <div>低</div>
+                <div>中</div>
+                <div><b style="color: var(--acid)">高</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="takeaway reveal">
+            核心结论：场景越不可控，360° 记录越有价值；但<strong
+              >拍摄负担并没有消失，而是转移到了后期筛选、视角重构和剪辑。</strong
+            >
+          </div>
+        </div>
+      </section>
+      <div class="part-band part2" id="feature">
+        <div class="wrap">
+          <b>PART 02 · 功能设计</b
+          ><span>COURT SPORTS × HARDWARE × AI × 360°</span>
+        </div>
+      </div>
+      <section class="section feature-hero part2 mate-hero">
+        <div class="wrap mate-hero-grid">
+          <div class="reveal">
+            <div class="eyebrow">FEATURE CONCEPT / COURT SPORTS</div>
+            <h2>球场<span>搭子</span></h2>
+          </div>
+          <div class="reveal">
+            <p class="mate-copy">
+              让全景相机不只站在场边录像，而是从架设、标记、回看到剪辑分享，陪用户打完一场球。
+            </p>
+            <div class="scope-note">
+              <b>DESIGN SCOPE</b
+              >面向排球、网球、羽毛球等隔网对抗运动。首发选择排球，因为参与人数更多、空间关系更复杂，也最贴近本次体验。
+            </div>
+            <div class="mate-court">
+              <i></i><b>360°<br />MATE</b>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pain-points">
+        <div class="wrap">
+          <div class="section-head stacked reveal">
+            <div>
+              <div class="eyebrow">FROM EXPERIENCE TO OPPORTUNITY</div>
+              <h2>体验痛点：有了相机，然后呢？</h2>
+            </div>
+            <p>
+              X6
+              已经能完整拍下一场球，但真实使用中仍有几个痛点：设备难固定、好球来不及记、争议球不能马上看、长素材难定位，通用
+              AI 也还看不懂比赛。
+            </p>
+          </div>
+          <div class="logic-flow reveal">
+            <div class="logic-node">
+              <span>OBSERVE 01</span><b>全景解决“拍不全”</b>
+            </div>
+            <div class="logic-node">
+              <span>OBSERVE 02</span><b>胶带临时固定机位</b>
+            </div>
+            <div class="logic-node">
+              <span>OBSERVE 03</span><b>精彩瞬间只能靠记忆</b>
+            </div>
+            <div class="logic-node">
+              <span>OBSERVE 04</span><b>AI 有镜头却没有重点</b>
+            </div>
+            <div class="logic-node">
+              <span>OPPORTUNITY</span><b>覆盖整场球的使用闭环</b>
+            </div>
+          </div>
+          <div class="pain-grid-v2">
+            <article class="pain-v2 reveal">
+              <span>PAIN 01 / SETUP</span>
+              <h3>能拍全场，<br />却架不稳</h3>
+              <p>
+                现场只能用胶带把延长杆粘在网柱上：固定慢、不够稳、拆卸麻烦，也缺少防坠保障。<em
+                  >用户需要快速、稳定且不伤场地的标准机位。</em
+                >
+              </p>
+            </article>
+            <article class="pain-v2 reveal">
+              <span>PAIN 02 / MEMORY</span>
+              <h3>好球刚打完，<br />时间点已忘</h3>
+              <p>
+                人在场上无法操作手机，继续打几个回合后便记不清高光发生在哪里。<em
+                  >用户需要不打断比赛的一键标记。</em
+                >
+              </p>
+            </article>
+            <article class="pain-v2 reveal">
+              <span>PAIN 03 / EDITING</span>
+              <h3>AI 剪得动，<br />却看不懂比赛</h3>
+              <p>
+                现有 AI
+                成片常出现重点不明、视角乱变、运镜随机；它识别了“运动”，却没有理解球、回合和叙事主角。<em
+                  >用户需要懂球且可调整的初剪。</em
+                >
+              </p>
+            </article>
+            <article class="pain-v2 reveal">
+              <span>PAIN 04 / REPLAY</span>
+              <h3>最想回看时，<br />视频还没准备好</h3>
+              <p>
+                争议球需要裁判视角，好球需要即时分享快乐；价值窗口发生在现场，而完整导出与剪辑发生在赛后。<em
+                  >用户需要近两分钟即时回看。</em
+                >
+              </p>
+            </article>
+            <article class="pain-v2 reveal">
+              <span>PAIN 05 / PLACEMENT</span>
+              <h3>第一次拍，<br />不知道放哪里</h3>
+              <p>
+                高度、网柱位置、顶灯眩光和球场范围都会影响结果，新用户只能反复试错。<em
+                  >用户需要与运动类型匹配的机位指引。</em
+                >
+              </p>
+            </article>
+            <article class="pain-v2 reveal">
+              <span>PAIN 06 / LEARNING</span>
+              <h3>好方法分散，<br />每个人重新踩坑</h3>
+              <p>
+                机位、参数和成片模板依赖玩家经验，却缺少针对具体运动的沉淀入口。<em
+                  >用户需要可复用的社区经验与模板。</em
+                >
+              </p>
+            </article>
+          </div>
+          <div class="need-banner reveal">
+            <small>CORE USER NEED</small
+            ><b
+              >我需要的不只是一台记录相机，更是一个能帮我架好、记住、看懂并分享比赛的“球场搭子”。</b
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section definition-stage">
+        <div class="wrap definition-grid">
+          <article class="definition-main reveal">
+            <div class="eyebrow">PRODUCT DEFINITION</div>
+            <h2>功能设计——做你的“球场搭子”</h2>
+            <p>
+              面向隔网对抗运动的一套全景拍摄方案：专用配件负责快速架设，遥控器随手标记好球，球场模式与多模态
+              AI
+              负责理解比赛，再把长素材变成能即时回看、继续编辑和直接分享的内容。
+            </p>
+            <div class="definition-chain">
+              <span>稳固架设</span><span>一键标记</span><span>比赛理解</span
+              ><span>即时回看</span><span>智能成片</span><span>社区分享</span>
+            </div>
+          </article>
+          <aside class="scope-card reveal">
+            <div>
+              <div class="eyebrow">WHY VOLLEYBALL FIRST</div>
+              <h3>先啃最复杂的场景，<br />再向相邻运动迁移</h3>
+              <p>
+                排球人数多、球路快、攻防转换频繁，遮挡也更复杂，对空间理解和镜头组织的要求最高。先解决排球，再迁移到边界更稳定、人数更少的隔网运动。
+              </p>
+            </div>
+            <div class="sport-list">
+              <div>
+                <span>排球</span><b><i>首发</i> · 复杂多人场景</b>
+              </div>
+              <div><span>网球</span><b>球路追踪 / 回合识别</b></div>
+              <div><span>羽毛球</span><b>高速小球 / 单双打</b></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">HARDWARE ECOSYSTEM</div>
+              <h2>硬件生态——先让相机真正站上球场</h2>
+            </div>
+            <p>
+              硬件要做的，是把现场临时用胶带固定、赛后凭记忆找时间点，变成稳定、顺手、可以重复的操作。
+            </p>
+          </div>
+          <div class="eco-grid">
+            <article class="eco-card reveal">
+              <div class="eco-visual mount-demo">
+                <div class="pole"></div>
+                <div class="strap"></div>
+                <div class="stick"></div>
+              </div>
+              <div class="eco-body">
+                <span>HARDWARE 01</span>
+                <h3>网柱固定套环 / 绑带</h3>
+                <p>
+                  把延长杆快速固定在球网两侧支柱上，得到高位、稳定、对称，又不占场边空间的机位。
+                </p>
+                <div class="placement-proof">
+                  <b>为什么固定在网柱，而不是放在地上？</b
+                  >地面机位高度不足，难以获得俯瞰全场的视角；大风环境下独立支架容易晃动或倾倒，也更容易被飞来的球击中、被场上人员碰倒。
+                </div>
+                <div class="spec-list">
+                  <div>
+                    <i>01</i><b>适配不同直径网柱，单手快速锁紧与拆卸</b>
+                  </div>
+                  <div>
+                    <i>02</i><b>防滑、减震与双重防坠，避免长时间拍摄位移</b>
+                  </div>
+                  <div>
+                    <i>03</i><b>高度和朝向可调，不损伤场地且不干扰比赛</b>
+                  </div>
+                  <div><i>04</i><b>稳定性状态可视化，未锁紧时明确提醒</b></div>
+                </div>
+              </div>
+            </article>
+            <article class="eco-card reveal">
+              <div class="eco-visual remote-demo">
+                <div class="remote-shell">
+                  <div class="highlight-key">精彩<br />瞬间</div>
+                  <div class="remote-led"></div>
+                </div>
+              </div>
+              <div class="eco-body">
+                <span>HARDWARE 02</span>
+                <h3>“精彩瞬间”遥控键</h3>
+                <p>
+                  在现有蓝牙遥控器上增加醒目的实体按键。好球发生后随手一按，就能在时间轴上留下标记，不用暂停比赛或掏出手机。
+                </p>
+                <div class="spec-list">
+                  <div>
+                    <i>01</i><b>大按键、盲操作，支持腕带或夹在网柱旁</b>
+                  </div>
+                  <div>
+                    <i>02</i><b>灯光 / 震动反馈，确认标记已经成功写入</b>
+                  </div>
+                  <div><i>03</i><b>自动保留标记前后片段，兼顾反应延迟</b></div>
+                  <div>
+                    <i>04</i><b>多人可共同标记，标记次数可作为高光强度信号</b>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">SOFTWARE ECOSYSTEM</div>
+              <h2>软件功能——从会拍到懂球</h2>
+            </div>
+            <p>
+              软件集中解决三个问题：第一次怎么拍、拍完去哪里学，以及长素材怎样变成看得懂的比赛内容。
+            </p>
+          </div>
+          <div class="software-grid">
+            <article class="software-card reveal">
+              <span>01 / COURT MODE</span>
+              <h3>专属模式与机位指引</h3>
+              <p>
+                选择运动类型后，根据球场、球网、顶灯和安全区域给出推荐网柱、安装高度与朝向，并用预览提示遮挡或眩光风险。
+              </p>
+              <ul>
+                <li>排球 / 网球 / 羽毛球预设</li>
+                <li>球场边界与球网自动校准</li>
+                <li>推荐机位、视场范围与稳定性检查</li>
+              </ul>
+            </article>
+            <article class="software-card reveal">
+              <span>02 / SPORTS COMMUNITY</span>
+              <h3>运动影像社区</h3>
+              <p>
+                按运动和场馆整理机位、参数、模板与成片，让零散的个人经验变成搜得到、用得上的拍摄方法。
+              </p>
+              <ul>
+                <li>机位与参数方案分享</li>
+                <li>横屏复盘 / 竖屏高光模板</li>
+                <li>同场双方共享素材与二创</li>
+              </ul>
+            </article>
+            <article class="software-card reveal">
+              <span>03 / AI DIRECTOR</span>
+              <h3>懂比赛的 AI 剪辑</h3>
+              <p>
+                不再随机追逐画面里的运动物体，而是先建立球场坐标、切分回合，确认用户想讲谁，再生成可以修改的镜头和节奏。
+              </p>
+              <ul>
+                <li>多模态回合与高光识别</li>
+                <li>全场 / 追球 / 主队 / 单人叙事</li>
+                <li>所有镜头可调整、可撤销</li>
+              </ul>
+            </article>
+          </div>
+          <div class="ai-transition reveal">
+            <span class="step">03</span
+            ><span
+              ><small>NEXT · FEATURE DEEP DIVE</small
+              ><b>下面重点展开：AI 剪辑如何真正理解一场球</b></span
+            ><span class="arrow">→</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">AI EDITING LOGIC</div>
+              <h2>AI 剪辑——先理解比赛，再决定镜头</h2>
+            </div>
+            <p>
+              这里展开软件功能
+              03：把画面、声音、遥控标记和比赛规则放在一起，先理解球场和回合，再生成镜头，避免通用
+              AI 一识别到运动就随意切镜。
+            </p>
+          </div>
+          <div class="ai-map">
+            <article class="ai-step reveal">
+              <span>00 / SPACE</span>
+              <h3>建立球场坐标</h3>
+              <p>
+                识别边界与球网，确定有效运动空间、双方半场、可能球路与安全视场。
+              </p>
+            </article>
+            <article class="ai-step reveal">
+              <span>01 / AUDIO</span>
+              <h3>定位击球声</h3>
+              <p>
+                利用每次击打形成的规律音频峰值，定位触球瞬间，并为 BGM
+                卡点提供节奏锚点。
+              </p>
+            </article>
+            <article class="ai-step reveal">
+              <span>02 / RALLY</span>
+              <h3>自动划分回合</h3>
+              <p>
+                结合击球间隙、球落地、人员停顿；正式比赛再叠加哨声，生成可浏览的回合时间轴。
+              </p>
+            </article>
+            <article class="ai-step reveal">
+              <span>03 / INTENT</span>
+              <h3>先选择叙事用途</h3>
+              <p>
+                用户决定是看完整战术、追踪球路、突出主队，还是锁定某位球员，AI
+                不替用户猜唯一答案。
+              </p>
+            </article>
+            <article class="ai-step reveal">
+              <span>04 / HIGHLIGHT</span>
+              <h3>融合主客观高光</h3>
+              <p>
+                把遥控器标记与接球、扣球、拦网等动作识别结合，兼顾“算法认为精彩”和“用户觉得精彩”。
+              </p>
+            </article>
+            <article class="ai-step reveal">
+              <span>05 / CAMERA</span>
+              <h3>生成可编辑运镜</h3>
+              <p>
+                跟随球路推进、转向和放大；关键动作前预留建立镜头，动作后保留队友反应，避免随机跳切。
+              </p>
+            </article>
+          </div>
+          <div class="mode-row reveal">
+            <div class="mode-item">
+              <small>GLOBAL</small><b>全局视角 · 战术与裁判回看</b>
+            </div>
+            <div class="mode-item">
+              <small>BALL</small><b>球视角 · 跟随完整球路</b>
+            </div>
+            <div class="mode-item">
+              <small>HOME TEAM</small><b>主场视角 · 突出一方表现</b>
+            </div>
+            <div class="mode-item">
+              <small>PLAYER LOCK</small><b>单人锁定 · 个人集锦</b>
+            </div>
+          </div>
+          <div class="replay-callout reveal">
+            <div>
+              <div class="eyebrow">INSTANT REPLAY</div>
+              <h3>近两分钟，立即回看</h3>
+            </div>
+            <p>
+              手机端不用等完整导出：争议球切到<strong>全局裁判视角</strong>判断触网、打手或出界；好球打完，队友也能马上围在一起回看，把快乐留在现场。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="prototype">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">CURRENT AI vs TARGET OUTPUT</div>
+              <h2>同一段素材，两种理解</h2>
+            </div>
+            <p>
+              左侧是现有 AI
+              自动剪辑，说明“能生成”不等于“会讲比赛”；右侧是人工剪辑版本，为未来
+              AI 成片提供镜头和节奏参考。
+            </p>
+          </div>
+          <div class="ai-compare">
+            <article class="ai-proof reveal">
+              <div
+                class="ai-proof-screen"
+                data-placeholder="拖入 ai-current.mp4 · 现有 AI 剪辑"
+              >
+                <span class="ai-proof-label">CURRENT AI</span
+                ><video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="现有AI自动剪辑视频"
+                >
+                  <source src="ai-current.mp4" type="video/mp4" />
+                  当前浏览器不支持视频播放。
+                </video>
+              </div>
+              <div class="ai-proof-body">
+                <h3>剪得出来，但看不懂重点</h3>
+                <div class="proof-points">
+                  <div><b>重点不明：</b>没有回合层级与关键动作判断</div>
+                  <div><b>视角乱变：</b>人物、球和全场之间缺少叙事理由</div>
+                  <div><b>运镜随机：</b>推进、转向与缩放没有服务于动作</div>
+                </div>
+              </div>
+            </article>
+            <article class="ai-proof target reveal">
+              <div
+                class="ai-proof-screen"
+                data-placeholder="拖入 insta.mp4 · 人工理想剪辑"
+              >
+                <span class="ai-proof-label">TARGET AI</span
+                ><video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="人工剪辑的目标AI成片参考视频"
+                >
+                  <source src="insta.mp4" type="video/mp4" />
+                  当前浏览器不支持视频播放。
+                </video>
+              </div>
+              <div class="ai-proof-body">
+                <h3>懂回合，才知道镜头该去哪</h3>
+                <div class="proof-points">
+                  <div><b>回合清楚：</b>发球—组织—进攻—得分形成完整叙事</div>
+                  <div><b>主角明确：</b>根据用途突出球路、主队或关键球员</div>
+                  <div><b>运镜有因：</b>跟球推进，动作放大，高光后保留反应</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <p class="vs-note reveal">
+            人工版本不要求 AI
+            逐帧复刻，而是给出一套清楚的成片标准：每次切镜和运镜都要能回答“这一刻为什么看这里”。
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">END-TO-END JOURNEY</div>
+              <h2>一场球，六次陪伴</h2>
+            </div>
+            <p>
+              “球场搭子”把硬件和软件串成一条完整流程，让用户专心打球，不必在每个环节都切换成摄影师或剪辑师。
+            </p>
+          </div>
+          <div class="journey-line reveal">
+            <div class="journey-step">
+              <span>01 / MOUNT</span><b>套环固定网柱</b
+              ><small>快速、稳定、防坠</small>
+            </div>
+            <div class="journey-step">
+              <span>02 / GUIDE</span><b>模式推荐机位</b
+              ><small>高度、朝向、避光</small>
+            </div>
+            <div class="journey-step">
+              <span>03 / RECORD</span><b>全景完整记录</b
+              ><small>两边队伍都不漏</small>
+            </div>
+            <div class="journey-step">
+              <span>04 / MARK</span><b>一键标记好球</b><small>不打断比赛</small>
+            </div>
+            <div class="journey-step">
+              <span>05 / REPLAY</span><b>两分钟即时回看</b
+              ><small>判争议、看高光</small>
+            </div>
+            <div class="journey-step">
+              <span>06 / CREATE</span><b>AI 初剪并分享</b
+              ><small>模式可选、镜头可改</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section closing">
+        <div class="wrap reveal">
+          <div class="eyebrow">FINAL TAKEAWAY</div>
+          <h2>不只记录比赛<br />而是陪你打球</h2>
+          <p>
+            全景相机已经解决了“拍到全部”，下一步是让它在球场上真正好用。“球场搭子”从固定相机和随手标记开始，再接上比赛理解、即时回看与智能剪辑，让
+            X6 从场边的记录设备，变成球队每次都愿意带上的固定队友。
+          </p>
+          <span class="pill">INSTA360 X6 · COURT MATE · PRODUCT CONCEPT</span>
+          <div class="limitations">
+            <h3>体验边界</h3>
+            <p>
+              本方案基于有限场次和个人排球经验，目前仍是一组产品假设。下一步需要通过用户访谈，确认不同水平球员和内容创作者是否有相同问题，再判断真实优先级和可验证的设计机会。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>INSTA360 X6 · EXPERIENCE REPORT + FEATURE DESIGN</span
+      ><span>DESIGNED &amp; RESEARCHED BY 付权佳</span>
+    </footer>
+    <script>
+      const bar = document.querySelector(".progress"),
+        links = [...document.querySelectorAll(".navlinks a")],
+        sections = [
+          ...document.querySelectorAll("main section[id], main div[id]"),
+        ];
+      const update = () => {
+        const h = document.documentElement,
+          max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max ? (h.scrollTop / max) * 100 : 0) + "%";
+        let active = "";
+        sections.forEach((s) => {
+          if (s.getBoundingClientRect().top < innerHeight * 0.42) active = s.id;
+        });
+        links.forEach((a) =>
+          a.classList.toggle("active", a.hash === "#" + active),
+        );
+      };
+      addEventListener("scroll", update, { passive: true });
+      update();
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("on");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      document
+        .querySelectorAll(".ai-proof-screen video")
+        .forEach((video) =>
+          video.addEventListener("loadeddata", () =>
+            video.parentElement.classList.add("ready"),
+          ),
+        );
+    </script>
+  </body>
+</html>
